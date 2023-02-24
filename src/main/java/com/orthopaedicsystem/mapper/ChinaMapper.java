@@ -1,7 +1,7 @@
 package com.orthopaedicsystem.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.orthopaedicsystem.po.China;
+import com.orthopaedicsystem.entity.China;
 import org.springframework.stereotype.Repository;
 
 @Repository

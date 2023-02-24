@@ -1,7 +1,7 @@
 package com.orthopaedicsystem;
 
 import com.orthopaedicsystem.mapper.ChinaMapper;
-import com.orthopaedicsystem.po.China;
+import com.orthopaedicsystem.entity.China;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
