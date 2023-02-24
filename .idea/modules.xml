@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/The_Orthopaedic_System.iml" filepath="$PROJECT_DIR$/.idea/The_Orthopaedic_System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OrthopaedicSystem.iml" filepath="$PROJECT_DIR$/OrthopaedicSystem.iml" />
     </modules>
   </component>
 </project>
