@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 public class JwtUtils {
-    static final long EXPIRE = 1000 * 60 * 60 * 6; // 6h
+    static final long EXPIRE = 21600000L; // 6h
     static final String APP_SECRET = "ukc8BDbRigUDaY6pZFfWus2jZWLPHO";
 
     /**
