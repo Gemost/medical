@@ -5,19 +5,24 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * city
+ * drugcompany
  */
 @Data
-public class City implements Serializable {
+public class Drugcompany implements Serializable {
     /**
-     * 城市编号
+     * 药品公司信息表id
      */
-    private Long cityId;
+    private Long companyId;
 
     /**
-     * 创建时间
+     * 公司名
      */
-    private Date createtime;
+    private String companyName;
+
+    /**
+     * 公司电话
+     */
+    private String companyPhone;
 
     /**
      * 更新时间
@@ -25,9 +30,9 @@ public class City implements Serializable {
     private Date updatetime;
 
     /**
-     * 城市编号
+     * 创建时间
      */
-    private Integer cityNumber;
+    private Date createtime;
 
     private static final long serialVersionUID = 1L;
 }

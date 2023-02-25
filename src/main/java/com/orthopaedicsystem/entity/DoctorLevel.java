@@ -4,15 +4,13 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * china
+ * doctor_level
  */
 @Data
-public class China implements Serializable {
-    private Integer id;
+public class DoctorLevel implements Serializable {
+    private Long id;
 
     private String name;
-
-    private Integer parentId;
 
     private static final long serialVersionUID = 1L;
 }
