@@ -25,6 +25,7 @@ public class SwaggerConfig {
                 .build();
 
     }
+
     private ApiInfo webApiInfo(){
         return new ApiInfoBuilder()
                 .title("创新骨科临床应用系统-API文档")

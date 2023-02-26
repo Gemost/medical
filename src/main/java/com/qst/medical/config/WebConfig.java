@@ -15,7 +15,7 @@ import java.util.Date;
 public class WebConfig implements WebMvcConfigurer {
     /**
      * 设置响应头的时间为GMT+8
-     * @param registry
+     * @param registry 拦截器注册器
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -27,6 +27,7 @@ public class WebConfig implements WebMvcConfigurer {
             }
         }).addPathPatterns("/**");
     }
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
