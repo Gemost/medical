@@ -1,5 +1,6 @@
 package com.qst.medical.mapper;
 
+import com.qst.medical.entity.DoctorEntity;
 import com.qst.medical.model.DoctorLevelModel;
 import com.qst.medical.model.DoctorModel;
 import com.qst.medical.model.TreatTypeModel;
@@ -15,4 +16,12 @@ public interface DoctorMapper {
     List<DoctorLevelModel> getAllLevel();
     /*获取所有的诊治类型*/
     List<TreatTypeModel> getAllTreatType();
+
+    int saveDoctor(DoctorEntity param);
+
+    /*更新医师信息*/
+    int updateDoctor(DoctorEntity param);
+
+    /*根据id删除医师*/
+    int deleteDoctorById(Long id);
 }
