@@ -15,8 +15,8 @@ import javax.annotation.security.RolesAllowed;
 @RequestMapping("/api/doctors")
 @CrossOrigin
 public class DoctorController {
-        @Autowired
-        private DoctorService doctorService;
+    @Autowired
+    private DoctorService doctorService;
 
     @RolesAllowed({"1","2"})
     @GetMapping(value = "")
