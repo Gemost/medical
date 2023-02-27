@@ -54,7 +54,7 @@ public class DoctorController {
 
     /**
      * 根据id删除医师信息并且删除其账户
-     * @param id
+     * @param id 医师id
      * @return
      */
     @RolesAllowed({"1"})
@@ -66,7 +66,7 @@ public class DoctorController {
 
     /**
      * 重置医师密码
-     * @param id
+     * @param id 医师id
      * @return
      */
     @RolesAllowed({"1"})
