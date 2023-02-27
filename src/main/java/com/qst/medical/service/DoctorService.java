@@ -46,11 +46,12 @@ public class DoctorService {
 
     /**
      * 添加医师，为医师创建账号密码
-     * @param param
-     * @return
+     * @param param 医师信息
+     * @return 返回一个Msg对象
      */
     public Msg saveDoctor(DoctorParam param) {
         int i,j;
+
         AccountEntity aEntity = new AccountEntity();
         aEntity.setPhoneNumber(param.getPhoneNumber());
         aEntity.setUname(param.getName()+param.getPhoneNumber().substring(7));//医生用户名姓名+手机号后四位
@@ -61,33 +62,41 @@ public class DoctorService {
         aEntity.setId(param.getAccountId());
         aEntity.setUtype("ROLE_2");
         int checkPhone = accountMapper.checkPhone(param.getPhoneNumber());
+
         if (checkPhone > 0) {
             return Msg.fail().code(10001).mess("手机号已被使用");
         }
+
         try {
             i = accountMapper.regist(aEntity);
         } catch (DuplicateKeyException e) {
             return Msg.fail().mess("该账号已经注册");
         }
+
         DoctorEntity de = new DoctorEntity();
         BeanUtils.copyProperties(param,de);
         de.setCreateTime(new DateTime().toDate());
         de.setUpdateTime(new DateTime().toDate());
         de.setAccountId(aEntity.getId());
         j = doctorMapper.saveDoctor(de);
+        Msg ret = null;
+
         if (i > 0 && j > 0) {
             List<DoctorModel> allDoctor = doctorMapper.getAllDoctor(null);
             de.setTotal((long) allDoctor.size());
             param.setPwd("");
             Long num = de.getTotal() % 5 == 0 ? (de.getTotal() / 5) : (de.getTotal() / 5)+1;
-            return Msg.success().mess("添加成功").data("pages",num).data("addData",param);
+            ret = Msg.success().mess("添加成功").data("pages",num).data("addData",param);
+        }else{
+            ret = Msg.fail().mess("添加失败");
         }
-        return Msg.fail().mess("添加失败");
+
+        return ret;
     }
     /**
      * 修改医师信息
-     * @param param
-     * @return
+     * @param param 医师信息
+     * @return 返回一个Msg对象
      */
     public Msg updateDoctor(Long id, DoctorParam param) {
         int checkPhone = accountMapper.checkPhone(param.getPhoneNumber());
@@ -115,8 +124,8 @@ public class DoctorService {
 
     /**
      * 根据id删除医师并且删除所在账号
-     * @param id
-     * @return
+     * @param id 医师id
+     * @return 返回一个Msg对象
      */
     public Msg deleteDoctorById(Long id) {
         int i = doctorMapper.deleteDoctorById(id);
@@ -128,8 +137,8 @@ public class DoctorService {
 
     /**
      * 重置医师密码
-     * @param id
-     * @return
+     * @param id 医师id
+     * @return  返回一个Msg对象
      */
     public Msg resetPwd(Long id) {
         String newPwd = new BCryptPasswordEncoder().encode("666666");
