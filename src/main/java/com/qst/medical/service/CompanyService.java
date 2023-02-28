@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.qst.medical.domain.DrugCompany;
 import com.qst.medical.entity.DrugCompanyEntity;
 import com.qst.medical.mapper.CompanyMapper;
+import com.qst.medical.mapper.CompanyPolicyMapper;
 import com.qst.medical.util.Msg;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class CompanyService {
 
     @Autowired
     private CompanyMapper companyMapper;
+    @Autowired
+    private CompanyPolicyMapper companyPolicyMapper;
     /**
      * 获取所有医药公司信息并分页，name不为空则模糊查询
      * @param pn 页码
@@ -95,15 +98,17 @@ public class CompanyService {
 
     /**
      * 根据id删除医药公司信息
-     * @param id 公司id
-     * @return 返回一个Msg对象，包含一个DrugCompany对象
+     * @param id
+     * @return
      */
     public Msg deleteCompanyById(Integer id) {
         int i = companyMapper.deleteCompanyById(id);
+        companyPolicyMapper.deletePolicyByCompany(id);
         if (i > 0) {
             return Msg.success().mess("删除成功");
         } else {
             return Msg.fail().mess("删除失败");
         }
     }
+
 }
