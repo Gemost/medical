@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Service
 public class FileUploadService {
-    public Msg upload(MultipartFile file){
+    public Msg upload(MultipartFile file) throws IOException {
         OutputStream os = null;
         InputStream inputStream = null;
         String fileName = null;
@@ -27,12 +27,12 @@ public class FileUploadService {
             while((len=inputStream.read(bs))!=-1){
                 os.write(bs,0,len);
             }
-            os.close();
-            inputStream.close();
         } catch (IOException e) {
             return Msg.fail().mess("上传失败");
         }
         finally {
+            os.close();
+            inputStream.close();
 
         }
         String url = "http://localhost:10001/image/"+fileName;

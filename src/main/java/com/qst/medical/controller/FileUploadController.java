@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.security.RolesAllowed;
+import java.io.IOException;
 
 @Api(tags = "文件上传控制器")
 @RestController
@@ -21,7 +22,7 @@ public class FileUploadController {
 
     @RolesAllowed({"1","2"})
     @PostMapping(value = "")
-    public Msg fileUpload(MultipartFile file) {
+    public Msg fileUpload(MultipartFile file) throws IOException {
         Msg msg = fileUploadService.upload(file);
         return msg;
     }
