@@ -1,6 +1,7 @@
 package com.qst.medical.service;
 
 import com.qst.medical.util.Msg;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,6 +10,8 @@ import java.util.UUID;
 
 @Service
 public class FileUploadService {
+    @Value("${myApplication.listingFolder}")
+    String path;
     public Msg upload(MultipartFile file) throws IOException {
         OutputStream os = null;
         InputStream inputStream = null;
@@ -17,7 +20,6 @@ public class FileUploadService {
         try {
             inputStream = file.getInputStream();
             fileName = UUID.randomUUID()+file.getOriginalFilename();
-            String path = "C:/Users/Pictures/medical";
             byte[] bs = new byte[1024];
             File tmpFile=new File(path);
             if (!tmpFile.exists()) {
@@ -27,6 +29,7 @@ public class FileUploadService {
             while((len=inputStream.read(bs))!=-1){
                 os.write(bs,0,len);
             }
+
         } catch (IOException e) {
             return Msg.fail().mess("上传失败");
         }

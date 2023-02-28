@@ -22,7 +22,7 @@ public class FileUploadController {
 
     @RolesAllowed({"1","2"})
     @PostMapping(value = "")
-    public Msg fileUpload(MultipartFile file) throws IOException {
+    public Msg fileUpload(@RequestParam("image")MultipartFile file) throws IOException {
         Msg msg = fileUploadService.upload(file);
         return msg;
     }
