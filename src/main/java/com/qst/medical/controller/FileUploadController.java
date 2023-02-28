@@ -21,7 +21,7 @@ public class FileUploadController {
 
     @RolesAllowed({"1","2"})
     @PostMapping(value = "")
-    public Msg fileUpload(@RequestParam("images")MultipartFile file) {
+    public Msg fileUpload(MultipartFile file) {
         Msg msg = fileUploadService.upload(file);
         return msg;
     }

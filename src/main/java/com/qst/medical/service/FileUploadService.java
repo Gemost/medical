@@ -17,7 +17,7 @@ public class FileUploadService {
         try {
             inputStream = file.getInputStream();
             fileName = UUID.randomUUID()+file.getOriginalFilename();
-            String path = "C:\\Users\\Pictures\\medical";
+            String path = "C:/Users/Pictures/medical";
             byte[] bs = new byte[1024];
             File tmpFile=new File(path);
             if (!tmpFile.exists()) {
@@ -32,9 +32,11 @@ public class FileUploadService {
         } catch (IOException e) {
             return Msg.fail().mess("上传失败");
         }
+        finally {
+
+        }
         String url = "http://localhost:10001/image/"+fileName;
         return Msg.success().mess("上传成功").data("url",url);
-
 
     }
 
