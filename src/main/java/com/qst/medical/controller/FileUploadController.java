@@ -4,10 +4,7 @@ import com.qst.medical.service.FileUploadService;
 import com.qst.medical.util.Msg;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.security.RolesAllowed;
@@ -24,7 +21,7 @@ public class FileUploadController {
 
     @RolesAllowed({"1","2"})
     @PostMapping(value = "")
-    public Msg fileUpload(MultipartFile file) {
+    public Msg fileUpload(@RequestParam("images")MultipartFile file) {
         Msg msg = fileUploadService.upload(file);
         return msg;
     }

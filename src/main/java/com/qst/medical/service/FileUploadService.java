@@ -17,13 +17,13 @@ public class FileUploadService {
         try {
             inputStream = file.getInputStream();
             fileName = UUID.randomUUID()+file.getOriginalFilename();
-            String path = "C:/Users/dell/Pictures/medical";
+            String path = "C:\\Users\\Pictures\\medical";
             byte[] bs = new byte[1024];
             File tmpFile=new File(path);
             if (!tmpFile.exists()) {
                 tmpFile.mkdirs();
             }
-            os =new FileOutputStream(tmpFile.getPath()+ File.separator+fileName);
+            os =new FileOutputStream(tmpFile.getPath()+File.separator+fileName);
             while((len=inputStream.read(bs))!=-1){
                 os.write(bs,0,len);
             }
@@ -34,6 +34,7 @@ public class FileUploadService {
         }
         String url = "http://localhost:10001/image/"+fileName;
         return Msg.success().mess("上传成功").data("url",url);
+
 
     }
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.medical.mapper.MaterialMapper">
+
+    <!--查询所有的必备材料-->
+    <select id="getAllMaterial" resultType="com.qst.medical.model.MaterialModel">
+        SELECT id,title,message FROM `material`
+        <where>
+            <trim prefixOverrides="OR">
+                <if test="keyword != null and keyword != ''">
+                    <bind name="key" value="'%' + keyword + '%'"/>
+                    OR id LIKE #{key}
+                    OR title LIKE #{key}
+                    OR message LIKE #{key}
+                </if>
+            </trim>
+        </where>
+    </select>
+
+
+
+    <!--添加必备材料-->
+    <insert id="saveMaterial">
+        insert into `material`(title,message)
+        values(#{title},#{message})
+    </insert>
+
+    <!--更新必备材料-->
+    <update id="updateMaterial">
+        update `material` set title=#{title},message=#{message} where id=#{id}
+    </update>
+
+    <!--根据id删除必备材料-->
+    <delete id="deleteMaterial" >
+        delete from `material` where id=#{id}
+    </delete>
+</mapper>
