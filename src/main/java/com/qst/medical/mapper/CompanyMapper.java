@@ -23,4 +23,6 @@ public interface CompanyMapper {
 
     /*根据id更新数据*/
     int updateCompanyById(DrugCompany company);
+
+    int getNumberOfCompany();
 }

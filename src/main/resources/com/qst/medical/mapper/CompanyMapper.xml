@@ -39,4 +39,7 @@
         select * from drugcompany where company_id=#{id} limit 1
     </select>
 
+    <select id="getNumberOfCompany" resultType="java.lang.Integer">
+        select COUNT(*) from drugcompany
+    </select>
 </mapper>

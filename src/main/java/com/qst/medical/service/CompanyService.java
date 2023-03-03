@@ -111,4 +111,8 @@ public class CompanyService {
         }
     }
 
+    public Msg getNumberOfCompany(){
+        int i = companyMapper.getNumberOfCompany();
+        return Msg.success().data("num",i);
+    }
 }

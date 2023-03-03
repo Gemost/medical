@@ -20,6 +20,11 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
+    @GetMapping(value = {"/sum"})
+    public Msg getNumberOfCompany(){
+        return companyService.getNumberOfCompany();
+    }
+
     /**
      * 医药公司信息的分页查询,name不为空则模糊查询
      * @param pn 页码
