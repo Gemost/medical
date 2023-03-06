@@ -15,6 +15,8 @@ public class Sale extends SuperDomain {
     private String salePhone;//药店电话
     private Date createtime;//创建时间
     private Date updatetime;//修改时间
+    private Double lng;
+    private Double lat;
     //省略get/set方法
 
 }
