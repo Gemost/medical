@@ -29,7 +29,7 @@
 
         <!--注册账号-->
         <insert id="regist" useGeneratedKeys="true" keyProperty="id">
-            insert into account(id,uname,realname,pwd,phonenumber,utype,updatetime,createtime)
+            insert into account(uname,realname,pwd,phonenumber,utype,updatetime,createtime)
             values(#{uname},#{realname},#{pwd},#{phoneNumber},#{utype},#{updatetime},#{createtime})
         </insert>
 

@@ -59,7 +59,7 @@ public class DoctorService {
         aEntity.setPwd(new BCryptPasswordEncoder().encode(param.getPwd()));
         aEntity.setCreatetime(new DateTime().toDate());
         aEntity.setUpdatetime(new DateTime().toDate());
-        aEntity.setId(param.getAccountId());
+//        aEntity.setId(param.getAccountId());
         aEntity.setUtype("ROLE_2");
         int checkPhone = accountMapper.checkPhone(param.getPhoneNumber());
 
