@@ -27,10 +27,20 @@ public class SaleService {
      * @param name
      */
     public PageInfo<Sale> getSaleWithPage(Integer pn, Integer size, String name) {
-        if (pn == null && size == null) {
+        if (pn ==null && size == null) {
             pn = 1;
-            size = 0;
+            size = Integer.MAX_VALUE;
         }
+        if (pn == null) {
+            pn = 1;
+        }
+        if (size == null) {
+            size = Integer.MAX_VALUE;
+        }
+        if (size == 0) {
+            size = 1;
+        }
+        System.out.println("pn=" + pn + " size = " + size);
         PageHelper.startPage(pn, size);
         List<Sale> list = saleMapper.getAllSale(name);
         PageInfo<Sale> info = new PageInfo<>(list,5);
