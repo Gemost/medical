@@ -2,6 +2,7 @@ package com.qst.medical.mapper;
 
 import com.qst.medical.domain.City;
 import com.qst.medical.entity.CityEntity;
+import com.qst.medical.model.ChinaModel;
 import com.qst.medical.model.CityModel;
 import org.springframework.stereotype.Component;
 
@@ -21,4 +22,6 @@ public interface CityMapper {
 
     /*查询城市是否存在*/
     int checkCityByName(Integer number);
+
+    List<ChinaModel> getChina();
 }

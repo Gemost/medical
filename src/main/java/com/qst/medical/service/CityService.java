@@ -6,13 +6,17 @@ import com.qst.medical.domain.City;
 import com.qst.medical.entity.CityEntity;
 import com.qst.medical.mapper.CityMapper;
 import com.qst.medical.mapper.MedicalPolicyMapper;
+import com.qst.medical.model.ChinaCityModel;
+import com.qst.medical.model.ChinaModel;
 import com.qst.medical.model.CityModel;
 import com.qst.medical.util.Msg;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -96,5 +100,52 @@ public class CityService {
      */
     public int checkCityByName(Integer number) {
         return cityMapper.checkCityByName(number);
+    }
+
+    public Msg getChina(){
+        List<ChinaModel> list = cityMapper.getChina();
+//        for (ChinaModel chinaModel : list) {
+//            System.out.println(chinaModel);
+//        }
+        HashMap<Integer, ChinaCityModel> map = new HashMap<>();
+        for (ChinaModel chinaModel : list) {
+            if (chinaModel.getParent_id() == null)
+                continue;
+            if (chinaModel.getId().equals(0))
+                continue;
+            if (chinaModel.getParent_id().equals(0)){
+                ChinaCityModel cm = new ChinaCityModel();
+                cm.setLabel(chinaModel.getName());
+                cm.setValue(chinaModel.getId());
+                cm.setChildren(new ArrayList<>());
+                map.put(chinaModel.getId(), cm);
+            }
+        }
+
+        for (ChinaModel chinaModel : list) {
+            if (chinaModel.getParent_id() == null)
+                continue;
+
+            if (!chinaModel.getParent_id().equals(0)){
+                ChinaCityModel cm = map.get(chinaModel.getParent_id());
+                if (cm == null)
+                    continue;
+
+                ChinaCityModel ch = new ChinaCityModel();
+                ch.setLabel(chinaModel.getName());
+                ch.setValue(chinaModel.getId());
+
+                if (cm.getChildren() == null)
+                    cm.setChildren(new ArrayList<>());
+                cm.getChildren().add(ch);
+            }
+        }
+
+        List<ChinaCityModel> ans = new ArrayList<>();
+        for (Integer integer : map.keySet()) {
+            ans.add(map.get(integer));
+        }
+
+        return Msg.success().data("china",ans);
     }
 }

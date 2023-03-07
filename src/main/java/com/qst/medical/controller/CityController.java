@@ -73,4 +73,9 @@ public class CityController {
         return msg;
     }
 
+    @RolesAllowed({"1"})
+    @GetMapping("/info")
+    public Msg getChina() {
+        return cityService.getChina();
+    }
 }

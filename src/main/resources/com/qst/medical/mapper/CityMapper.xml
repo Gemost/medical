@@ -12,6 +12,12 @@
         <result property="city" column="cname"/>
     </resultMap>
 
+    <resultMap id="ChinaMap" type="com.qst.medical.model.ChinaModel">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="parent_id" column="parent_id"/>
+    </resultMap>
+
     <!--查询所有的城市信息,name不为空则模糊查询-->
     <select id="getAllCity" resultMap="AllCityMap">
         select c.city_id,c.city_number,s.`name` as cname,s2.`name` as pname from city c
@@ -47,6 +53,10 @@
     <!--通过名字查询-->
     <select id="checkCityByName" resultType="int">
         select COUNT(*) from city where city_number=#{number}
+    </select>
+
+    <select id="getChina" resultMap="ChinaMap">
+        select * from china;
     </select>
 
 </mapper>
