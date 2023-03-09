@@ -64,7 +64,7 @@ jobs:
       # 触发服务器部署脚本
       - name: Trigger server deployment script
         run: |
-          ssh root@${{ secrets.SERVER_HOST }} "docker stop ${{ env.IMAGE_NAME }} || true"
-          ssh root@${{ secrets.SERVER_HOST }} "docker rm ${{ env.IMAGE_NAME }} || true"
-          ssh root@${{ secrets.SERVER_HOST }} "docker pull ${{ secrets.DOCKER_HUB_USER }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}"
-          ssh root@${{ secrets.SERVER_HOST }} "docker run -p ${{ env.PORT }}:${{ env.PORT}} --name ${{ env.IMAGE_NAME }} -d ${{ secrets.DOCKER_HUB_USER }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}"
+          ssh ubuntu@${{ secrets.SERVER_HOST }} "docker stop ${{ env.IMAGE_NAME }} || true"
+          ssh ubuntu@${{ secrets.SERVER_HOST }} "docker rm ${{ env.IMAGE_NAME }} || true"
+          ssh ubuntu@${{ secrets.SERVER_HOST }} "docker pull ${{ secrets.DOCKER_HUB_USER }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}"
+          ssh ubuntu@${{ secrets.SERVER_HOST }} "docker run -p ${{ env.PORT }}:${{ env.PORT}} --name ${{ env.IMAGE_NAME }} -d ${{ secrets.DOCKER_HUB_USER }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}"
