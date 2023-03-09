@@ -34,7 +34,9 @@ public class FileUploadService {
             return Msg.fail().mess("上传失败");
         }
         finally {
+            if(os!=null)
             os.close();
+            if( inputStream != null)
             inputStream.close();
 
         }

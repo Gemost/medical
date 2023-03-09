@@ -24,8 +24,8 @@
         <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="total">
             select COUNT(*) from sale
         </selectKey>
-        insert into sale(sale_name,sale_phone,updatetime,createtime,lng,lat)
-        values (#{saleName},#{salePhone},#{updatetime},#{createtime},#{lng},#{lat})
+        insert into sale(sale_name,sale_phone,updatetime,createtime)
+        values (#{saleName},#{salePhone},#{updatetime},#{createtime})
     </insert>
 
     <!--根据id删除药店信息-->
