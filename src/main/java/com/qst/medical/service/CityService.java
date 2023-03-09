@@ -102,8 +102,8 @@ public class CityService {
         return cityMapper.checkCityByName(number);
     }
 
-    public Msg getChina(){
-        List<ChinaModel> list = cityMapper.getChina();
+    public Msg getChinaInfo(){
+        List<ChinaModel> list = cityMapper.getChinaInfo();
 //        for (ChinaModel chinaModel : list) {
 //            System.out.println(chinaModel);
 //        }

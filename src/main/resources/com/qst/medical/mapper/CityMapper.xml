@@ -55,7 +55,7 @@
         select COUNT(*) from city where city_number=#{number}
     </select>
 
-    <select id="getChina" resultMap="ChinaMap">
+    <select id="getChinaInfo" resultMap="ChinaMap">
         select * from china;
     </select>
 

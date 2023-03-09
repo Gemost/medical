@@ -75,7 +75,7 @@ public class CityController {
 
     @RolesAllowed({"1"})
     @GetMapping("/info")
-    public Msg getChina() {
-        return cityService.getChina();
+    public Msg getChinaInfo() {
+        return cityService.getChinaInfo();
     }
 }

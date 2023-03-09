@@ -18,23 +18,25 @@ public class DoctorController {
     @Autowired
     private DoctorService doctorService;
 
-    @RolesAllowed({"1","2"})
+    @RolesAllowed({"1", "2"})
     @GetMapping(value = "")
     public Msg getDoctorWithPage(DoctorParam param) {
         return doctorService.getDoctorWithPage(param);
     }
 
-    @RolesAllowed({"1","2"})
+    @RolesAllowed({"1", "2"})
     @GetMapping("/info")
     public Msg getLevelAndType() {
         return doctorService.getLevelAndType();
     }
+
     /**
      * 新增医师信息
+     *
      * @param param
      * @return
      */
-    @RolesAllowed({"1","2"})
+    @RolesAllowed({"1", "2"})
     @PostMapping(value = "")
     public Msg saveDoctor(@RequestBody @Validated DoctorParam param) {
         return doctorService.saveDoctor(param);
@@ -43,6 +45,7 @@ public class DoctorController {
 
     /**
      * 修改医师信息
+     *
      * @param param
      * @return
      */
@@ -54,6 +57,7 @@ public class DoctorController {
 
     /**
      * 根据id删除医师信息并且删除其账户
+     *
      * @param id 医师id
      * @return
      */
@@ -66,6 +70,7 @@ public class DoctorController {
 
     /**
      * 重置医师密码
+     *
      * @param id 医师id
      * @return
      */
@@ -74,4 +79,12 @@ public class DoctorController {
     public Msg resetPwd(@PathVariable Long id) {
         return doctorService.resetPwd(id);
     }
+
+    @RolesAllowed({"1", "2"})
+    @GetMapping("/kind")
+    public Msg getDoctorKind() {
+        return doctorService.getDoctorKind();
     }
+}
+
+

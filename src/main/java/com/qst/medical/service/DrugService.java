@@ -44,6 +44,7 @@ public class DrugService {
     public Msg saveDrug(DrugParam drugParam) {
         drugParam.setCreatetime(new Date());
         drugParam.setUpdatetime(new Date());
+//        System.out.println(drugParam);
         int i = drugMapper.saveDrug(drugParam);
         int j = drugMapper.insertSalePlace(drugParam.getDrugId(), drugParam.getSaleIds());
         //由于前端不好判断插入后的总记录数，所以插入之后返回全部的药品数量
@@ -67,7 +68,15 @@ public class DrugService {
         drugMapper.deleteSaleByDrugId(drugParam.getDrugId());
         drugMapper.insertSalePlace(drugParam.getDrugId(),drugParam.getSaleIds());
         DrugEntity drugEntity = new DrugEntity();
-        BeanUtils.copyProperties(drugParam,drugEntity);
+//        BeanUtils.copyProperties(drugParam,drugEntity);
+        drugEntity.setDrugId(drugParam.getDrugId());
+        drugEntity.setCreatetime(drugParam.getCreatetime());
+        drugEntity.setUpdatetime(drugParam.getUpdatetime());
+        drugEntity.setDrugEffect(drugParam.getDrugEffect());
+        drugEntity.setDrugName(drugParam.getDrugName());
+        drugEntity.setDrugInfo(drugParam.getDrugInfo());
+        drugEntity.setDrugPublisher(drugParam.getDrugPublisher());
+        drugEntity.setDrugImg(drugParam.getDrugImg());
         int i = drugMapper.updateDrugById(drugEntity);
         if (i > 0) {
             return Msg.success().mess("修改成功");

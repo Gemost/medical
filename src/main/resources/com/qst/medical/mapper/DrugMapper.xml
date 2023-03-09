@@ -43,7 +43,7 @@
     <!--根据id更新药店信息-->
     <update id="updateDrugById">
         update drug set drug_name=#{drugName},drug_info=#{drugInfo},drug_effect=#{drugEffect},drug_Img=#{drugImg},
-                        createtime=#{createtime},updatetime=#{updatetime}
+                        createtime=#{createtime},updatetime=#{updatetime},publisher=#{drugPublisher}
         where drug_id=#{drugId}
     </update>
 

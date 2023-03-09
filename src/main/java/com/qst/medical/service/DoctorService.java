@@ -6,6 +6,7 @@ import com.qst.medical.entity.AccountEntity;
 import com.qst.medical.entity.DoctorEntity;
 import com.qst.medical.mapper.AccountMapper;
 import com.qst.medical.mapper.DoctorMapper;
+import com.qst.medical.model.DoctorKindModel;
 import com.qst.medical.model.DoctorLevelModel;
 import com.qst.medical.model.DoctorModel;
 import com.qst.medical.model.TreatTypeModel;
@@ -19,6 +20,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -147,5 +150,25 @@ public class DoctorService {
             return Msg.success().mess("重置成功");
         }
         return Msg.fail().mess("重置失败");
+    }
+
+    public Msg getDoctorKind(){
+        List<DoctorModel> l = doctorMapper.getAllDoctor(null);
+        HashMap<String, Integer> map = new HashMap<>();
+        for (DoctorModel d : l) {
+            if (d == null)
+                continue;
+            String treatType = d.getTreatType();
+            if (map.containsKey(treatType)) {
+                map.put(treatType,map.get(treatType)+1);
+            }else{
+                map.put(treatType,1);
+            }
+        }
+        List<DoctorKindModel> ret = new ArrayList<>();
+        for (String s : map.keySet()) {
+            ret.add(new DoctorKindModel(s,map.get(s)));
+        }
+        return Msg.success().data("doctorKind",ret);
     }
 }

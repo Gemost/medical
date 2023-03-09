@@ -23,5 +23,5 @@ public interface CityMapper {
     /*查询城市是否存在*/
     int checkCityByName(Integer number);
 
-    List<ChinaModel> getChina();
+    List<ChinaModel> getChinaInfo();
 }
